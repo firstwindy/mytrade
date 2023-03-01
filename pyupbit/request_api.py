@@ -4,6 +4,8 @@ from requests import Response
 from typing import Any, Tuple, Dict, Optional
 from .errors import error_handler, RemainingReqParsingError
 import json
+from requests.exceptions import Timeout
+import log
 
 HTTP_RESP_CODE_START = 200
 HTTP_RESP_CODE_END = 400
@@ -39,7 +41,21 @@ def _parse(remaining_req: str) -> Dict[str, Any]:
 
 @error_handler
 def _call_get(url: str, **kwargs: Any) -> Response:
-    return requests.get(url, **kwargs)
+    max_retries = 3
+    retry_count = 0
+    logger = log.make_logger3()
+
+    while True:
+        try:
+            response = requests.get(url, timeout=5)
+            break  # 요청이 성공적으로 처리되면 while문 종료
+        except Timeout:
+            retry_count += 1
+            if retry_count == max_retries:
+                logger.info("최대 재시도 횟수를 초과했습니다.")
+                break
+            logger.info(f"요청이 타임아웃 되었습니다. 재시도 ({retry_count}/{max_retries})...")
+    return response
 
 
 @error_handler
