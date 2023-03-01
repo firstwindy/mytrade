@@ -149,7 +149,7 @@ while True:
                 logger.info("  -- END Sell >>>> ")
             logger.info("")
             tradeON = True
-            logger.info("  -------------------------------------------------------------------------------------------")
+            logger.info("  ------------------------------------------------------------------------------------------")
             logger.info("  - trade END: "+now.strftime('%Y-%m-%d %H:%M:%S'))
             ## 시간 재설정
             start_time = get_start_time("KRW-BTC")
@@ -162,5 +162,6 @@ while True:
     except Exception as e:
         logger.debug(e)
         time.sleep(1)
+
 
 
