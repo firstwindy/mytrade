@@ -47,7 +47,7 @@ def _call_get(url: str, **kwargs: Any) -> Response:
 
     while True:
         try:
-            response = requests.get(url, timeout=5)
+            response = requests.get(url, timeout=5, **kwargs)
             break  # 요청이 성공적으로 처리되면 while문 종료
         except Timeout:
             retry_count += 1

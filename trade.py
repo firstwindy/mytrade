@@ -43,33 +43,11 @@ def get_current_price(ticker):
     """현재가 조회"""
     return pyupbit.get_orderbook(ticker)["orderbook_units"][0]["ask_price"]
 
-# class Consumer(threading.Thread):
-#     def __init__(self, q):
-#         super().__init__()
-#         self.q = q
 
-#     def run(self):        
-#         while True:            
-#             data = self.q.get()
-#             print(data)
-            
-# class Producer(threading.Thread):
-#     def __init__(self, q):
-#         super().__init__()
-#         self.q = q
-
-#     def run(self):
-#         while True:
-#             self.q.put(3)
-#             time.sleep(3)            
-            
-# q = queue.Queue()
-# Producer(q).start()
-# Consumer(q).start()
 
 # ###################################################################################
 
-logger = log.make_logger3()
+logger = log.logger_console()
 logger.info("###################################################################################")
 logger.info("## START")
 logger.info("###################################################################################")
@@ -136,9 +114,10 @@ while True:
             logger.info('=============================================================================================')
             logger.info("## " + now.strftime('%Y-%m-%d %H:%M:%S') )
             logger.info("=============================================================================================")
-            logger.info(" - Condition : " + str(tradeON) )            
+            logger.info(" - Condition : " + str(tradeON) )        
+            logger.info( upbit.get_balance("BTC") )       
             btc = upbit.get_balance("BTC")
-            if btc > 0.00008:
+            if btc != None and btc > 0.00008:
                 before_btc = btc
                 #upbit.sell_market_order("KRW-BTC", btc)
                 after_btc = upbit.get_balance("BTC")
