@@ -5,8 +5,8 @@ import log
 import threading
 import queue
 
-access = "7Qthuh3P7jCEdYWbooHHgOdEPJ65v7xkibHQBcXA"
-secret = "NSxnpVxSOiAQxnQ1xfiaMzMY0rw8rKiMTCcbANlJ"
+access = "my"
+secret = "my"
 interval = "minute240"
 ticker = "KRW-BTC"
 
