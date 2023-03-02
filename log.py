@@ -1,7 +1,7 @@
 import logging
 from logging.handlers import TimedRotatingFileHandler
 
-def make_logger(name=None):
+def logger_DEV(name=None):
     #1 logger instance를 만든다.
     logger = logging.getLogger(name)
 
@@ -17,7 +17,7 @@ def make_logger(name=None):
  
     #5 handler 별로 다른 level 설정
     console.setLevel(logging.INFO)
-    file_handler.setLevel(logging.DEBUG)
+    file_handler.setLevel(logging.INFO)
 
     #6 handler 출력 format 지정
     console.setFormatter(formatter)
@@ -29,18 +29,12 @@ def make_logger(name=None):
 
     return logger
 
-def make_logger2(name=None):
-    LOG_FORMAT = "[%(asctime)-10s] (줄 번호: %(lineno)d) %(name)s:%(levelname)s - %(message)s"
-    logging.basicConfig(format=LOG_FORMAT)
-    logger = logging.getLogger(name)
-    logger.setLevel(logging.INFO)
-    logger.info("sth happened")
-    return logger
 
 def hi() :
     print("hi")
 
-def make_logger3(name=None):
+def logger_File(name=None):
+
     #1 logger instance를 만든다.
     logger = logging.getLogger(name)
 
@@ -56,7 +50,10 @@ def make_logger3(name=None):
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
+
     return logger
+
+
 
 def logger_DEBUG(name=None):
     #1 logger instance를 만든다.

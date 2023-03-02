@@ -45,9 +45,9 @@ def get_current_price(ticker):
 
 
 
-# ###################################################################################
+###################################################################################
 
-logger = log.logger_console()
+logger = log.logger_File("MAIN")
 logger.info("###################################################################################")
 logger.info("## START")
 logger.info("###################################################################################")
@@ -87,7 +87,7 @@ while True:
             ma200 = get_ma(ticker,200)
             current_price = get_current_price(ticker)
         
-            
+
             #### 조건 일치시 매수 거래시간동안 한번만 거래, 마감때 거래 가능으로 변경
             #if True:
             if current_price > target_price > ma20 > ma200:
@@ -100,11 +100,11 @@ while True:
                     logger.info("    -- current_price: " + str(current_price))
                     logger.info("    --  target_price: " + str(target_price))
                     logger.info("    --          ma20: " + str(ma20))
-                    logger.info("    --         ma200: " + str(ma200),flush=True)
+                    logger.info("    --         ma200: " + str(ma200))
                     #upbit.buy_market_order("KRW-BTC", krw*0.9995)
                     logger.info("  -- END Buy --------------------- ")
                 else:
-                    logger.info(" - 잔액부족",flush=True)
+                    logger.info(" - 잔액부족")
                 ### 매수 or 매수 실패 후 trade false 로 해당 bar trade 종료    
                 tradeON = False
                 logger.info(" - Condition : " + str(tradeON) )
