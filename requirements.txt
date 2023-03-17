@@ -14,4 +14,4 @@ requests==2.25.1
 six==1.15.0
 urllib3==1.26.3
 websockets
-zope.interface==5.2.0
+zope.interface==6.0
